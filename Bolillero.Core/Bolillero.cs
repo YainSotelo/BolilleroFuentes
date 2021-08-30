@@ -23,23 +23,55 @@ namespace Bolillero.Core
              r = new Random();
 
         }
-        public Bolillero(byte cantidad)
-        {
-            byte.Lleno= new List<byte>();
-        }
-        private void Lleno(byte cantidad);{
+       
+       public Bolillero(byte cantidad):this()
+       {
+           this.llenar(cantidad);
+       }
 
-            for (byte i = 0; i < cantidad; i++) 
-            return bolillas
-        }
+       private void llenar (buty cantidad)
+       {
+           for (int i = 0; i < cantidad; i++)
+           {
+               adentro.add(i);
+           }
+       }
 
-      
+       public byte sacarBolilla()
+       {
+           byte aleatorio = (byte)r.next(0,adentro.count);
 
-        
-        
-            
+           byte bolilla= adentro [aleatorio];
 
+           adentro.removeAt(aleatorio);
 
+           afuera.add(bolilla);
+
+           return bolilla;
+       }
+
+       public void RecargarBolillero()
+       {
+           adentro.addRanger(afuera);
+
+           afuera.clear();
+       }
+
+        public bool JogoBonito(List<byte> Toque)
+       {
+           RecargarBolillero();
+           for (int i = 0; i < Toque; i++)
+           {
+
+           }
+                    
+       }
+
+       public bool JogoBonitoNveces();
+       {
+           
+       }
+       
 
 
     }
