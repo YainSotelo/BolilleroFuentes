@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Bolillero.Core
@@ -29,51 +30,66 @@ namespace Bolillero.Core
            this.llenar(cantidad);
        }
 
-       private void llenar (buty cantidad)
+       private void llenar (byte cantidad)
        {
-           for (int i = 0; i < cantidad; i++)
+           for (byte i = 0; i < cantidad; i++)
            {
-               adentro.add(i);
+               adentro.Add(i);
            }
        }
 
        public byte sacarBolilla()
        {
-           byte aleatorio = (byte)r.next(0,adentro.count);
+           byte aleatorio = (byte)r.Next(0,adentro.Count);
 
            byte bolilla= adentro [aleatorio];
 
-           adentro.removeAt(aleatorio);
+           adentro.RemoveAt(aleatorio);
 
-           afuera.add(bolilla);
+           afuera.Add(bolilla);
 
            return bolilla;
        }
 
        public void RecargarBolillero()
        {
-           adentro.addRanger(afuera);
+           adentro.AddRange(afuera);
 
-           afuera.clear();
+           afuera.Clear();
        }
 
         public bool JogoBonito(List<byte> Toque)
        {
            RecargarBolillero();
-           for (int i = 0; i < Toque; i++)
+           for (byte i = 0; i < Toque.Count; i++)
            {
+               if( sacarBolilla () !=Toque[i])
+               {
+                   return false;
+               }
 
-           }
-                    
-       }
-
-       public bool JogoBonitoNveces();
-       {
            
+           } 
+           return true;        
        }
+        
+
+       public long JogoBonitoNveces( List<byte> Toque,long cantidad )
+        { 
+         long contador = 0;
+
+         for (byte i = 0; i < cantidad; i++)
+         {
+             if (JogoBonito(Toque))
+             {
+                contador++;
+             }
+             
+         }
+         return contador;
+           
+           }
        
-
-
-    }
+    }}
 
     
