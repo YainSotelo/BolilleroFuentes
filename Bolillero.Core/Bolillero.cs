@@ -11,9 +11,9 @@ namespace Bolillero.Core
 
         byte BolitasAzar{get; set;}
            
-        List<byte>  afuera {get; set;}
+        public List<byte>  afuera {get; set;}
 
-        List<byte> adentro {get; set;}
+        public  List<byte> adentro {get; set;} 
 
         Random r;
 

@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bolillero.Core;
+using System.Collections.Generic;
 
 namespace Bolillero.Test
 {
@@ -14,20 +15,20 @@ namespace Bolillero.Test
 
           Bolillero.sacarBolilla();
 
-          Assert.AreEqual(1, Bolillero.afuera);
+          Assert.AreEqual(1, Bolillero.afuera.Count);
 
-          Assert.AreEqual(9,Bolillero.adentro); 
+          Assert.AreEqual(9,Bolillero.adentro.Count); 
         }
 
         public void Probable()
         {
            Bolillero = new Bolillero.Core.Bolillero(5);
 
-           var jugadaFacil = new List<byte>()[2];
+           var jugadaFacil = new List<byte>(){2};
 
            var ganadas =  Bolillero.JogoBonitoNveces(jugadaFacil , 100);
 
-           assert.AreEqual(0.2 , ganadas/100, 0.5 );
+           Assert.AreEqual(0.2 , ganadas/100, 0.5 );
 
 
 
