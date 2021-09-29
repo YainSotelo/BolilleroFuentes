@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using System.Therading.Tasks;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace Bolillero.Core
@@ -12,23 +12,23 @@ namespace Bolillero.Core
             return Bolillero.JogoBonitoNveces(JogoBonito , JogoBonitoNveces);
         }
 
-        public long SimularConHilos(Bolillero Bolillero, long JogoBonitoNveces, List<byte> JogoBonito ,int cantidadHilos)
+        public long SimularConHilos(Bolillero bolillero, long JogoBonitoNveces, List<byte> JogoBonito ,int cantidadHilos)
         {
             var vector = new Task<long>[cantidadHilos];
 
-            long SimularPorHilos = JogoBonitoNveces/cantidadHilos;
+            long SimulacionPorHilos = JogoBonitoNveces/cantidadHilos;
             
             for (int i=0; i < cantidadHilos; i++)
             {
-                var clone = (Bolillero)Bolillero.clone();
+                var clone = (Bolillero)bolillero.Clone();
 
-                vector[i] = Task<long>.Run(() => clone.JogoBonitoNveces(JogoBonito , SimularPorHilos));
+                vector[i] = Task<long>.Run(() => clone.JogoBonitoNveces(JogoBonito , SimulacionPorHilos));
 
             }
             Task<long>.WaitAll(vector);
 
-        return vector.Sum(t => t.Result); 
-           
+            return vector.Sum(t => t.Result); 
+
         }
     
     }

@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Bolillero.Core
 {
     public class Bolillero : ICloneable
     {
          byte cantidad {get; set;}
-
-        byte BolitasAzar{get; set;}
            
         public List<byte>  afuera {get; set;}
 
@@ -21,7 +17,7 @@ namespace Bolillero.Core
         {
             afuera = new List<byte>();
             adentro = new List<byte>();
-            r = new Random(DateTime.Now.Milisecond);
+            r = new Random(DateTime.Now.Millisecond);
 
         }
        
@@ -30,15 +26,15 @@ namespace Bolillero.Core
         this.llenar(cantidad);
        }
 
-        public Bolillero(Bolillero original)
+        private Bolillero(Bolillero original)
         {
             afuera = new List<byte>(original.afuera);
             adentro = new List<byte>(original.adentro);
-            r = new Random(DateTime.Now.Milisecond);
+            r = new Random(DateTime.Now.Millisecond);
 
         }
 
-       private void llenar (byte cantidad)
+       public void llenar (byte cantidad)
        {
            for (byte i = 0; i < cantidad; i++)
            {
@@ -86,7 +82,7 @@ namespace Bolillero.Core
         { 
          long contador = 0;
 
-         for (byte i = 0; i < cantidad; i++)
+         for (long i = 0; i < cantidad; i++)
          {
              if (JogoBonito(Toque))
              {
@@ -97,8 +93,8 @@ namespace Bolillero.Core
          return contador;
            
         }
-           public objeto clon(){
-
+           public object Clone()
+           {
              return new Bolillero(this);
            }
        

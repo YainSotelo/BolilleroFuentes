@@ -8,6 +8,7 @@ namespace Bolillero.Test
     public class BolilleroTest
     {
         Bolillero.Core.Bolillero Bolillero {get;set;}
+
         [TestMethod]
         public void Bolillas()
         {
@@ -20,6 +21,7 @@ namespace Bolillero.Test
           Assert.AreEqual(9,Bolillero.adentro.Count); 
         }
 
+        [TestMethod]
         public void Probable()
         {
            Bolillero = new Bolillero.Core.Bolillero(5);
