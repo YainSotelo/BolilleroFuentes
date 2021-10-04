@@ -30,6 +30,23 @@ namespace Bolillero.Core
             return vector.Sum(t => t.Result); 
 
         }
-    
+        public async Task<long> SimularConHilosAsync(Bolillero bolillero, long JogoBonitoNveces, List<byte> JogoBonito ,int cantidadHilos)
+        {
+            var vector = new Task<long>[cantidadHilos];
+
+            long SimulacionPorHilos = JogoBonitoNveces/cantidadHilos;
+            
+            for (int i=0; i < cantidadHilos; i++)
+            {
+                var clone = (Bolillero)bolillero.Clone();
+
+                vector[i] = Task<long>.Run(() => clone.JogoBonitoNveces(JogoBonito , SimulacionPorHilos));
+
+            }
+            await Task.WhenAll(vector);
+
+            return vector.Sum(t => t.Result); 
+        }
+        
     }
 }
